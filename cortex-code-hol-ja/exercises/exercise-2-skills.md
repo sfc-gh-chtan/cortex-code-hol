@@ -1,277 +1,277 @@
-# Exercise 2: Master Cortex Code Skills
+# 演習2: Cortex Codeスキルのマスター
 
-## Objective
+## 目標
 
-Learn to use built-in Cortex Code skills and create custom skills that encode your team's best practices for future POCs and projects.
+組み込みのCortex Codeスキルの使い方を学び、将来のPOCやプロジェクトに向けてチームのベストプラクティスをエンコードするカスタムスキルを作成します。
 
-**Time:** 60 minutes  
-**Deliverables:**
-- Experience with multiple built-in skills
-- A custom skill for financial analytics POC preparation
-
----
-
-## Background
-
-Skills are reusable workflows that teach Cortex Code how to complete specific tasks consistently. They're like runbooks that execute automatically.
-
-**Why Skills Matter for Your Team:**
-- Encode best practices once, use everywhere
-- Ensure consistency across team members
-- Reduce time on repetitive workflows
-- Share expertise without shadowing colleagues
+**所要時間:** 60分  
+**成果物:**
+- 複数の組み込みスキルの使用経験
+- 財務分析POC準備用のカスタムスキル
 
 ---
 
-## Skill Storage Locations
+## 背景
 
-Skills can be stored in three locations, each with different scope and precedence:
+スキルは、Cortex Codeに特定のタスクを一貫して完了する方法を教える再利用可能なワークフローです。自動実行されるランブックのようなものです。
 
-| Type | Location | Scope | Use Case |
+**チームにとってスキルが重要な理由:**
+- ベストプラクティスを一度エンコードすれば、どこでも使用可能
+- チームメンバー間の一貫性を確保
+- 繰り返しワークフローの時間を短縮
+- 同僚にシャドウイングせずに専門知識を共有
+
+---
+
+## スキルの保存場所
+
+スキルは3つの場所に保存でき、それぞれスコープと優先順位が異なります：
+
+| タイプ | 場所 | スコープ | ユースケース |
 |------|----------|-------|----------|
-| **Bundled** | `~/.local/share/cortex/*/bundled_skills/` | All projects (read-only) | Ships with Cortex Code |
-| **Global** | `~/.cortex/skills/` | All projects | Your reusable personal/team skills |
-| **Project-local** | `.cortex/skills/` in project root | Single project only | Project-specific workflows |
+| **バンドル** | `~/.local/share/cortex/*/bundled_skills/` | 全プロジェクト（読み取り専用） | Cortex Codeに同梱 |
+| **グローバル** | `~/.cortex/skills/` | 全プロジェクト | 再利用可能な個人/チームスキル |
+| **プロジェクトローカル** | プロジェクトルートの`.cortex/skills/` | 単一プロジェクトのみ | プロジェクト固有のワークフロー |
 
-**Precedence:** Project-local > Global > Bundled
+**優先順位:** プロジェクトローカル > グローバル > バンドル
 
-This means you can override a bundled skill by creating one with the same name in your global or project directory.
+これは、グローバルまたはプロジェクトディレクトリに同じ名前のスキルを作成することで、バンドルスキルをオーバーライドできることを意味します。
 
-**Quick commands:**
+**クイックコマンド:**
 ```bash
-# View bundled skills (read-only)
+# バンドルスキルを表示（読み取り専用）
 ls ~/.local/share/cortex/*/bundled_skills/
 
-# View your global custom skills
+# グローバルカスタムスキルを表示
 ls ~/.cortex/skills/
 
-# View project-local skills
+# プロジェクトローカルスキルを表示
 ls .cortex/skills/
 ```
 
 ---
 
-## Task 1: Explore Built-in Skills (15 min)
+## タスク1: 組み込みスキルの探索（15分）
 
-### Step 1: List available skills
-
-```
-List all available skills and briefly describe what each does.
-```
-
-### Step 2: Understand skill structure
+### ステップ1: 利用可能なスキルの一覧表示
 
 ```
-Explain the structure of a Cortex Code skill:
-- What files does it contain?
-- What is the SKILL.md format?
-- How do skills get triggered?
-
-Keep it concise - bullet points preferred.
+利用可能なすべてのスキルを一覧表示し、それぞれが何をするか簡単に説明してください。
 ```
 
-### Step 3: Review the semantic-view-optimization skill
-
-We used this in Exercise 1. Let's understand it better:
+### ステップ2: スキル構造の理解
 
 ```
-Show me the structure of the semantic-view-optimization skill.
-What are its main workflow steps?
-What sub-skills does it contain?
+Cortex Codeスキルの構造を説明してください：
+- どのようなファイルが含まれていますか？
+- SKILL.mdのフォーマットは？
+- スキルはどのようにトリガーされますか？
+
+簡潔に - 箇条書きが望ましい。
 ```
 
----
+### ステップ3: semantic-view-optimizationスキルの確認
 
-## Task 2: Use a Bundled Skill (20 min)
-
-### Use the agent-optimization skill
-
-Let's improve the Snowflake Intelligence agent from Exercise 1:
+演習1でこれを使用しました。より詳しく理解しましょう：
 
 ```
-Use the agent-optimization skill to audit and improve the Pinnacle Financial 
-Analyst we created in Exercise 1. Proceed autonomously.
-
-Check for:
-1. Are the guardrails appropriate for financial data?
-2. Is the semantic model complete?
-3. Are there edge cases we're missing?
-4. What questions might fail?
-
-Fix any gaps identified in the semantic view audit. Add any missing metrics 
-(like profitability calculations) and update the semantic view with appropriate 
-data coverage documentation.
+semantic-view-optimizationスキルの構造を表示してください。
+主なワークフローステップは何ですか？
+どのようなサブスキルが含まれていますか？
 ```
 
 ---
 
-## Task 3: Create a Custom Skill (25 min)
+## タスク2: バンドルスキルの使用（20分）
 
-Now you'll create your own skill that encodes a repeatable POC preparation workflow for your team.
+### agent-optimizationスキルの使用
 
-### Step 1: Define the skill scope
-
-```
-I want to create a custom skill called "financial-demo-prep" that will help 
-our team quickly prepare financial analytics POCs for future projects.
-Proceed autonomously.
-
-The skill should:
-1. Gather project requirements (company info, pain points, stakeholders)
-2. Generate customized sample data
-3. Create a semantic model tailored to the use case
-4. Create a Cortex Agent and enable it in Snowflake Intelligence
-5. Produce presentation talking points
-
-Help me outline the workflow steps this skill should contain.
-```
-
-### Step 2: Create the skill structure
+演習1のSnowflake Intelligenceエージェントを改善しましょう：
 
 ```
-Create the skill file structure in the skills/ directory. Proceed autonomously.
+agent-optimizationスキルを使用して、演習1で作成したPinnacle Financial 
+Analystを監査・改善してください。自律的に進めてください。
+
+以下をチェック：
+1. ガードレールは財務データに適切か？
+2. セマンティックモデルは完全か？
+3. 見落としているエッジケースはあるか？
+4. どの質問が失敗する可能性があるか？
+
+セマンティックビュー監査で特定されたギャップを修正してください。不足している
+指標（収益性計算など）を追加し、適切なデータカバレッジドキュメントで
+セマンティックビューを更新してください。
+```
+
+---
+
+## タスク3: カスタムスキルの作成（25分）
+
+ここでは、チーム向けの繰り返し可能なPOC準備ワークフローをエンコードする独自のスキルを作成します。
+
+### ステップ1: スキルスコープの定義
+
+```
+「financial-demo-prep」というカスタムスキルを作成したいです。これは
+チームが将来のプロジェクト向けに財務分析POCを素早く準備するのに役立ちます。
+自律的に進めてください。
+
+スキルは以下を行うべき：
+1. プロジェクト要件の収集（会社情報、課題、ステークホルダー）
+2. カスタマイズされたサンプルデータの生成
+3. ユースケースに合わせたセマンティックモデルの作成
+4. Cortex Agentの作成とSnowflake Intelligenceでの有効化
+5. プレゼンテーションのトーキングポイントの作成
+
+このスキルに含めるべきワークフローステップの概要を作成してください。
+```
+
+### ステップ2: スキル構造の作成
+
+```
+skills/ディレクトリにスキルファイル構造を作成してください。自律的に進めてください。
 
 skills/
 └── financial-demo-prep/
     ├── SKILL.md
-    └── (any supporting files)
+    └── （サポートファイル）
 
-The SKILL.md should follow best practices:
-- Proper frontmatter with name and description
-- Clear workflow steps
-- Stopping points for user input
-- Success criteria
-- Automatically create Cortex Agent and enable in Snowflake Intelligence
+SKILL.mdはベストプラクティスに従うべき：
+- 名前と説明を含む適切なフロントマター
+- 明確なワークフローステップ
+- ユーザー入力のための停止ポイント
+- 成功基準
+- Cortex Agentを自動作成しSnowflake Intelligenceで有効化
 ```
 
-### Step 3: Write the skill content
+### ステップ3: スキルコンテンツの作成
 
-Use this prompt to have Cortex Code help write the skill:
+このプロンプトを使用してCortex Codeにスキルの作成を依頼：
 
 ```
-Write the SKILL.md content for the financial-demo-prep skill. Include:
+financial-demo-prepスキルのSKILL.mdコンテンツを作成してください。以下を含む：
 
-## Frontmatter
+## フロントマター
 - name: financial-demo-prep  
-- description: Trigger phrases and when to use
+- description: トリガーフレーズと使用タイミング
 
-## Workflow Steps
-1. **Gather Requirements** - Questions to ask about the project
-2. **Generate Schema** - Create tables matching the business
-3. **Create Semantic Model** - Build Cortex Analyst config
-4. **Create Agent** - Build Cortex Agent and enable in Snowflake Intelligence
-5. **Generate Presentation Script** - Talking points and queries
-6. **Validation** - Ensure everything works
+## ワークフローステップ
+1. **要件収集** - プロジェクトについて質問すべき事項
+2. **スキーマ生成** - ビジネスに合ったテーブルを作成
+3. **セマンティックモデル作成** - Cortex Analyst設定を構築
+4. **エージェント作成** - Cortex Agentを構築しSnowflake Intelligenceで有効化
+5. **プレゼンテーションスクリプト生成** - トーキングポイントとクエリ
+6. **検証** - すべてが動作することを確認
 
-## Stopping Points
-- After requirements gathering (confirm understanding)
-- After data generation (verify looks realistic)
-- After presentation script (approve before presenting)
+## 停止ポイント
+- 要件収集後（理解を確認）
+- データ生成後（現実的に見えるか検証）
+- プレゼンテーションスクリプト後（プレゼン前に承認）
 
-## Output
-What artifacts this skill produces
+## 出力
+このスキルが生成する成果物
 
-Keep it under 200 lines - skills should be concise.
+200行以内に収める - スキルは簡潔であるべき。
 ```
 
-### Step 4: Test the skill (Optional)
+### ステップ4: スキルのテスト（オプション）
 
-Test your new skill:
+新しいスキルをテスト：
 
-> **Note:** This step may take 5-10 minutes to complete as the skill generates demo data, creates schemas, and builds a semantic model.
-
-```
-Use the financial-demo-prep skill to prepare a POC for a fictional 
-scenario: "Cascade Wealth Management" - a $500M AUM RIA focused on 
-retirement planning. Their main pain point is client profitability analysis.
-```
-
-### Step 5: Promote to Global Skill (Optional)
-
-If your skill works well and you want to reuse it across all projects, promote it from project-local to global:
+> **注:** このステップはスキルがデモデータを生成し、スキーマを作成し、セマンティックモデルを構築するため、完了まで5-10分かかる場合があります。
 
 ```
-Copy the financial-demo-prep skill from the project's .cortex/skills/ 
-directory to my global skills directory (~/.cortex/skills/) so I can 
-use it in any project.
+financial-demo-prepスキルを使用して、架空のシナリオ向けPOCを準備してください：
+「Cascade Wealth Management」- リタイアメントプランニングに特化した
+AUM 5億ドルのRIA。主な課題は顧客収益性分析です。
 ```
 
-**Why promote a skill?**
-- Share across multiple projects
-- Build a personal library of reusable workflows
-- Team members can copy your global skills to their machines
+### ステップ5: グローバルスキルへの昇格（オプション）
 
-**Alternative:** Create directly in global from the start:
+スキルがうまく機能し、すべてのプロジェクトで再利用したい場合は、プロジェクトローカルからグローバルに昇格：
+
 ```
-Create the financial-demo-prep skill in my global skills directory 
-(~/.cortex/skills/) instead of the project-local directory.
+financial-demo-prepスキルをプロジェクトの.cortex/skills/ディレクトリから
+グローバルスキルディレクトリ（~/.cortex/skills/）にコピーして、
+どのプロジェクトでも使用できるようにしてください。
+```
+
+**スキルを昇格する理由:**
+- 複数プロジェクト間で共有
+- 再利用可能なワークフローの個人ライブラリを構築
+- チームメンバーがあなたのグローバルスキルを自分のマシンにコピー可能
+
+**代替案:** 最初からグローバルに直接作成：
+```
+financial-demo-prepスキルをプロジェクトローカルディレクトリではなく、
+グローバルスキルディレクトリ（~/.cortex/skills/）に作成してください。
 ```
 
 ---
 
-## Task 4: Understand Skill Best Practices (Bonus)
+## タスク4: スキルのベストプラクティスを理解する（ボーナス）
 
-### Key principles from the skill development guide:
+### スキル開発ガイドからの主要原則：
 
-1. **Conciseness is key** - Keep SKILL.md under 500 lines
-2. **Degrees of freedom** - Match specificity to task fragility
-3. **Stopping points** - Always pause before making changes
-4. **Modularity is optional** - Single files work for simple workflows
-5. **Test with real scenarios** - Skills should handle edge cases
+1. **簡潔さが鍵** - SKILL.mdは500行以内に
+2. **自由度** - タスクの脆弱性に合わせて具体性を調整
+3. **停止ポイント** - 変更を加える前に必ず一時停止
+4. **モジュール性はオプション** - シンプルなワークフローには単一ファイルで十分
+5. **実際のシナリオでテスト** - スキルはエッジケースを処理すべき
 
-### Skill quality checklist:
+### スキル品質チェックリスト：
 
 ```markdown
-□ Clear trigger description in frontmatter
-□ Workflow steps are numbered and specific
-□ Actions use directive language ("Ask", "Create", "Verify")
-□ Stopping points marked with ⚠️
-□ Success criteria defined
-□ Error handling guidance included
-□ Under 200 lines (simple) or 500 lines (complex)
+□ フロントマターに明確なトリガー説明
+□ ワークフローステップに番号があり具体的
+□ アクションは指示的な言語を使用（「質問する」「作成する」「確認する」）
+□ 停止ポイントに⚠️マーク
+□ 成功基準が定義されている
+□ エラー処理ガイダンスが含まれている
+□ 200行以内（シンプル）または500行以内（複雑）
 ```
 
 ---
 
-## Validation Checklist
+## 検証チェックリスト
 
-Before proceeding to Exercise 3, verify:
+演習3に進む前に確認：
 
-- [ ] Used the agent-optimization bundled skill successfully
-- [ ] Created financial-demo-prep skill with proper structure
-- [ ] Skill has clear frontmatter and workflow steps
-- [ ] Skill includes appropriate stopping points
-- [ ] Tested skill with a sample scenario (optional)
-- [ ] Skill produces expected outputs
-
----
-
-## Key Takeaways
-
-1. **Skills save time** - Encode once, use repeatedly
-2. **Built-in skills are powerful** - Check what exists before building
-3. **Start simple** - Single-file skills work for most use cases
-4. **Stopping points are critical** - Never auto-execute risky actions
-5. **Share with your team** - Skills are documentation + automation
+- [ ] agent-optimizationバンドルスキルを正常に使用
+- [ ] 適切な構造でfinancial-demo-prepスキルを作成
+- [ ] スキルに明確なフロントマターとワークフローステップがある
+- [ ] スキルに適切な停止ポイントが含まれている
+- [ ] サンプルシナリオでスキルをテスト（オプション）
+- [ ] スキルが期待される出力を生成
 
 ---
 
-## Pro Tips
+## 主な学び
 
-1. **Name skills descriptively** - Use trigger words in the description
-2. **Version your skills** - Put them in source control
-3. **Iterate based on use** - Improve skills after real-world testing
-4. **Keep references separate** - Large docs go in references/ folder
-5. **Test edge cases** - What if user provides incomplete info?
-
----
-
-## Solution Reference
-
-If you get stuck, reference solutions are available in `solutions/exercise-2-solution/`
+1. **スキルは時間を節約** - 一度エンコードすれば、繰り返し使用
+2. **組み込みスキルは強力** - 構築前に何が存在するか確認
+3. **シンプルに始める** - ほとんどのユースケースでは単一ファイルスキルで十分
+4. **停止ポイントは重要** - リスクのあるアクションを自動実行しない
+5. **チームと共有** - スキルはドキュメント + 自動化
 
 ---
 
-## Next Steps
+## プロのコツ
 
-Proceed to [Exercise 3: Stakeholder Documentation](exercise-3-documentation.md) where you'll generate architecture diagrams and integration guides to present to leadership.
+1. **スキルに説明的な名前を付ける** - 説明にトリガーワードを使用
+2. **スキルをバージョン管理** - ソース管理に入れる
+3. **使用に基づいて改善** - 実際のテスト後にスキルを改善
+4. **参照を分離** - 大きなドキュメントはreferences/フォルダに
+5. **エッジケースをテスト** - ユーザーが不完全な情報を提供したらどうなるか？
+
+---
+
+## ソリューションリファレンス
+
+行き詰まった場合は、`solutions/exercise-2-solution/`に参照ソリューションがあります
+
+---
+
+## 次のステップ
+
+[演習3: ステークホルダー向けドキュメント](exercise-3-documentation.md)に進み、経営陣に提示するアーキテクチャ図と統合ガイドを生成します。

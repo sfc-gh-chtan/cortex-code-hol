@@ -1,287 +1,287 @@
-# Exercise 1: Build the POC
+# 演習1: POCの構築
 
-## Objective
+## 目標
 
-Build a compelling financial analytics POC featuring **Cortex Analyst** and **Snowflake Intelligence** that you can present to your leadership team.
+経営陣にプレゼンできる、**Cortex Analyst**と**Snowflake Intelligence**を活用した説得力のある財務分析POCを構築します。
 
-**Time:** 60 minutes  
-**Deliverables:** 
-- Working demo database with realistic financial data
-- Semantic view for Cortex Analyst
-- Snowflake Intelligence chat experience ready for your presentation
-
----
-
-## Background
-
-You're a BI Analyst at Pinnacle Financial Services. After your requirements gathering meeting with leadership, you need to build a proof-of-concept that demonstrates:
-1. Natural language queries for your CFO ("What was our Q4 revenue?")
-2. Self-service analytics without SQL knowledge
-3. Auditable, trustworthy AI-generated insights
-
-**The approach:** Since you can't connect to production systems for the POC, you'll create a realistic demo environment based on what you know about your company's data.
-
-Your CFO, Margaret Chen, said:
-> "I want to ask my data questions like I'm texting my analyst."
+**所要時間:** 60分  
+**成果物:** 
+- 現実的な財務データを含む動作するデモ用データベース
+- Cortex Analyst用セマンティックビュー
+- プレゼンテーション用のSnowflake Intelligenceチャット体験
 
 ---
 
-## Task 1: Review Your Requirements (10 min)
+## 背景
 
-### Step 1: Review the company background
+あなたはPinnacle Financial ServicesのBIアナリストです。経営陣との要件収集ミーティングの後、以下を実証するPOCを構築する必要があります：
+1. CFO向けの自然言語クエリ（「Q4の収益は？」）
+2. SQL知識不要のセルフサービス分析
+3. 監査可能で信頼できるAI生成インサイト
 
-```
-Read the company background from assets/customer-brief.md and summarize:
-1. Company profile (size, AUM, employees)
-2. Current technical environment
-3. Key pain points
-4. Primary stakeholders and their concerns
-```
+**アプローチ:** POCでは本番システムに接続できないため、会社のデータに関する知識を基に現実的なデモ環境を作成します。
 
-### Step 2: Review requirements meeting notes
-
-```
-Read assets/discovery-notes.md and identify:
-1. Specific quotes from stakeholders we should address in the POC
-2. Success criteria Margaret defined
-3. David's technical concerns about AI
-4. The consensus on what to demo first
-```
+CFOのMargaret Chenはこう言いました：
+> 「アナリストにテキストを送るように、データに質問したい。」
 
 ---
 
-## Task 2: Generate POC Database (20 min)
+## タスク1: 要件の確認（10分）
 
-**This is where Cortex Code shines - generating realistic demo data based on your company context.**
-
-### Step 1: Design the data model
-
-Ask Cortex Code to design a schema based on your company's needs:
+### ステップ1: 会社概要の確認
 
 ```
-Based on the Pinnacle Financial company background and requirements meeting 
-notes, design a Snowflake database schema for our financial analytics POC. 
-Proceed autonomously.
-
-Consider:
-- We're an asset management firm with $2B AUM
-- Revenue comes from management fees, performance fees, advisory fees
-- We have 50,000 client accounts across Individual, Institutional, and Family Office segments
-- Expenses include compensation, technology, professional services, occupancy
-- Leadership needs P&L reporting and budget variance tracking
-
-Create dimension and fact tables appropriate for:
-1. Revenue analytics by client, product, and time
-2. Expense tracking with budget variance
-3. Client profitability analysis
-
-Show me the proposed schema and then create everything.
+assets/customer-brief.mdから会社概要を読み、以下をまとめてください：
+1. 会社プロファイル（規模、AUM、従業員数）
+2. 現在の技術環境
+3. 主要な課題
+4. 主要ステークホルダーとその懸念事項
 ```
 
-### Step 2: Create the database and tables
+### ステップ2: 要件ミーティング議事録の確認
 
 ```
-Create the PINNACLE_FINANCIAL_DEMO database with the schema you designed.
-Use the ANALYTICS schema for the business tables. Proceed autonomously - 
-assume yes to any write or grant operations.
-
-Execute the DDL statements to create:
-1. All dimension tables (clients, products, expense categories, dates)
-2. All fact tables (revenue, expenses)
-3. Show me confirmation that each table was created
-```
-
-### Step 3: Generate realistic sample data
-
-```
-Generate realistic sample data for our Pinnacle Financial POC. Proceed 
-autonomously without asking for confirmation.
-
-For dimension tables:
-- 10-15 clients with realistic names across Individual, Institutional, and Family Office types
-- 6-8 investment products (Equity, Fixed Income, Alternative, Multi-Asset)
-- 12-15 expense categories matching our current structure
-- Use our office locations: New York, Boston, San Francisco
-
-For fact tables:
-- 400-600 revenue transactions from July 2025 - January 2026
-- 250-350 expense transactions for the same period
-- Revenue should total roughly $10-15M for the period (we do $25M/year)
-- Include some budget variance (some categories over, some under)
-
-The data should support these demo questions:
-- "What was our total revenue last quarter?"
-- "Which clients generated the most revenue?"
-- "What expense categories are over budget?"
-```
-
-### Step 4: Validate the data
-
-```
-Run validation queries to confirm:
-1. Row counts for all tables
-2. Date range of transactions
-3. Total revenue and expense amounts
-4. Sample of client and product names
-
-Show me a summary of what was created.
+assets/discovery-notes.mdを読み、以下を特定してください：
+1. POCで対応すべきステークホルダーからの具体的な発言
+2. Margaretが定義した成功基準
+3. AIに関するDavidの技術的懸念
+4. 最初にデモすべき内容についての合意事項
 ```
 
 ---
 
-## Task 3: Create Semantic View for Cortex Analyst (15 min)
+## タスク2: POC用データベースの生成（20分）
 
-### Step 1: Understand semantic views
+**ここがCortex Codeの真価を発揮する部分です - 会社のコンテキストに基づいた現実的なデモデータを生成します。**
 
-```
-Explain what a Cortex Analyst semantic view is and why it's important 
-for natural language queries. How is it different from a YAML semantic model?
-Keep it brief - 3-4 sentences.
-```
+### ステップ1: データモデルの設計
 
-### Step 2: Generate the semantic view
+Cortex Codeに会社のニーズに基づいたスキーマを設計させます：
 
 ```
-Create a Cortex Analyst semantic view using SQL for the PINNACLE_FINANCIAL_DEMO 
-database. Proceed autonomously. The semantic view should:
+Pinnacle Financialの会社概要と要件ミーティング議事録に基づいて、
+財務分析POC用のSnowflakeデータベーススキーマを設計してください。
+自律的に進めてください。
 
-1. Include all dimension and fact tables we created
-2. Define relationships between tables (foreign keys)
-3. Add business-friendly descriptions and synonyms
-4. Define key metrics: total_revenue, total_expenses, budget_variance
-5. Use CREATE SEMANTIC VIEW SQL syntax
+考慮事項：
+- 当社はAUM 20億ドルの資産運用会社
+- 収益は運用報酬、成功報酬、アドバイザリーフィーから
+- 個人、機関投資家、ファミリーオフィスの3セグメントに50,000の顧客口座
+- 経費には人件費、テクノロジー、専門サービス、オフィス費用が含まれる
+- 経営陣はP&Lレポートと予算差異追跡が必要
 
-Execute the SQL.
+以下に適したディメンションテーブルとファクトテーブルを作成：
+1. 顧客、商品、時間別の収益分析
+2. 予算差異付き経費追跡
+3. 顧客収益性分析
+
+提案するスキーマを示してから、すべてを作成してください。
 ```
 
-### Step 3: Test Cortex Analyst queries
-
-Test the semantic view with questions leadership will ask:
+### ステップ2: データベースとテーブルの作成
 
 ```
-Using the semantic view we just created, test these questions:
+設計したスキーマでPINNACLE_FINANCIAL_DEMOデータベースを作成してください。
+ビジネステーブルにはANALYTICSスキーマを使用。自律的に進めてください - 
+書き込みや権限付与の操作はすべてYesと仮定してください。
 
-1. "What was our total revenue last quarter?" (Margaret's top question)
-2. "Which clients generated the most revenue?" 
-3. "What expense categories are over budget?" (for David)
-4. "Show me revenue by product type"
-
-For each question, show me:
-- The natural language question
-- The SQL that Cortex Analyst generated
-- The results
+DDLステートメントを実行して以下を作成：
+1. すべてのディメンションテーブル（顧客、商品、経費カテゴリ、日付）
+2. すべてのファクトテーブル（収益、経費）
+3. 各テーブルが作成されたことの確認を表示
 ```
 
----
-
-## Task 4: Configure Snowflake Intelligence (10 min)
-
-### Step 1: Understand Snowflake Intelligence
+### ステップ3: 現実的なサンプルデータの生成
 
 ```
-What is Snowflake Intelligence and how does it differ from Cortex Analyst? 
-How do they work together? Keep it to 3-4 sentences.
+Pinnacle Financial POC用の現実的なサンプルデータを生成してください。
+確認を求めずに自律的に進めてください。
+
+ディメンションテーブル用：
+- 個人、機関投資家、ファミリーオフィスタイプにまたがる現実的な名前の顧客10-15件
+- 6-8の投資商品（株式、債券、オルタナティブ、マルチアセット）
+- 現在の構造に合った12-15の経費カテゴリ
+- オフィス拠点を使用：ニューヨーク、ボストン、サンフランシスコ
+
+ファクトテーブル用：
+- 2025年7月〜2026年1月の収益トランザクション400-600件
+- 同期間の経費トランザクション250-350件
+- 収益合計は期間で約1,000-1,500万ドル（年間2,500万ドル）
+- 予算差異を含める（一部のカテゴリは超過、一部は未達）
+
+データは以下のデモ質問をサポートすべき：
+- 「前四半期の総収益は？」
+- 「最も収益を生み出した顧客は？」
+- 「予算超過の経費カテゴリは？」
 ```
 
-### Step 2: Create a Cortex Agent
+### ステップ4: データの検証
 
 ```
-Create a Cortex Agent for our Pinnacle Financial POC. Proceed autonomously 
-and execute all SQL including grants. The agent should:
+以下を確認する検証クエリを実行：
+1. 全テーブルの行数
+2. トランザクションの日付範囲
+3. 収益と経費の合計金額
+4. 顧客名と商品名のサンプル
 
-1. Be named "Pinnacle Financial Analyst"
-2. Use the semantic view we created
-3. Have instructions appropriate for financial services executives
-4. Include sample questions based on our requirements meeting
-5. Grant USAGE to appropriate roles so leadership can access it
-
-Execute all SQL.
-```
-
-### Step 3: Enable the agent in Snowflake Intelligence
-
-To make the agent visible in Snowflake Intelligence for your leadership presentation:
-
-```
-Make the Pinnacle Financial Analyst agent available in Snowflake Intelligence.
-Proceed autonomously - assume yes to all grants.
-
-1. Grant USAGE on the agent to PUBLIC (or a specific role)
-2. Add the agent to the Snowflake Intelligence object
-3. Verify it was added successfully
-
-Execute all SQL.
-```
-
-### Step 4: Test the agent
-
-```
-Test the agent with executive-style questions that Margaret, David, and Sarah 
-might ask:
-
-1. "How's our revenue trending?"
-2. "Compare our expense run rate to budget"
-3. "Which advisor has the most profitable clients?"
-
-These responses will be great for my presentation!
+作成されたものの概要を表示してください。
 ```
 
 ---
 
-## Task 5: Prepare Your Presentation Script (5 min)
+## タスク3: Cortex Analyst用セマンティックビューの作成（15分）
 
-### Generate talking points
+### ステップ1: セマンティックビューの理解
 
 ```
-Based on my requirements meeting notes, create a 10-minute presentation 
-script that:
+Cortex Analystのセマンティックビューとは何か、なぜ自然言語クエリに
+重要なのかを説明してください。YAMLセマンティックモデルとの違いは？
+簡潔に3-4文で。
+```
 
-1. Opens with Margaret's pain point (2-3 days for ad-hoc reports)
-2. Shows natural language query answering her question in seconds
-3. Addresses David's concern about showing SQL (auditability)
-4. Ends with the value proposition for Pinnacle
+### ステップ2: セマンティックビューの生成
 
-Format as brief talking points with the exact queries to run.
-Reference specific quotes from the requirements meeting.
+```
+PINNACLE_FINANCIAL_DEMOデータベース用のCortex Analystセマンティックビューを
+SQLで作成してください。自律的に進めてください。セマンティックビューは：
+
+1. 作成したすべてのディメンションテーブルとファクトテーブルを含む
+2. テーブル間の関係（外部キー）を定義
+3. ビジネスフレンドリーな説明と同義語を追加
+4. 主要指標を定義：total_revenue、total_expenses、budget_variance
+5. CREATE SEMANTIC VIEW SQL構文を使用
+
+SQLを実行してください。
+```
+
+### ステップ3: Cortex Analystクエリのテスト
+
+経営陣が質問するであろう内容でセマンティックビューをテスト：
+
+```
+作成したセマンティックビューを使用して、以下の質問をテスト：
+
+1. 「前四半期の総収益は？」（Margaretのトップ質問）
+2. 「最も収益を生み出した顧客は？」
+3. 「予算超過の経費カテゴリは？」（David向け）
+4. 「商品タイプ別の収益を表示」
+
+各質問について以下を表示：
+- 自然言語の質問
+- Cortex Analystが生成したSQL
+- 結果
 ```
 
 ---
 
-## Validation Checklist
+## タスク4: Snowflake Intelligenceの設定（10分）
 
-Before proceeding to Exercise 2, verify:
+### ステップ1: Snowflake Intelligenceの理解
 
-- [ ] PINNACLE_FINANCIAL_DEMO database created with dimension and fact tables
-- [ ] Sample data loaded (fact tables have 300+ rows)
-- [ ] Data looks realistic (appropriate names, amounts, date ranges)
-- [ ] Semantic view created in the database
-- [ ] Cortex Analyst responds correctly to natural language queries
-- [ ] Generated SQL is correct and auditable
-- [ ] Cortex Agent created and responding
-- [ ] Agent enabled in Snowflake Intelligence (USAGE granted)
-- [ ] Presentation script addresses stakeholder concerns from requirements meeting
+```
+Snowflake Intelligenceとは何か、Cortex Analystとどう違うのか？
+どのように連携するのか？3-4文で説明してください。
+```
+
+### ステップ2: Cortex Agentの作成
+
+```
+Pinnacle Financial POC用のCortex Agentを作成してください。自律的に進め、
+権限付与を含むすべてのSQLを実行してください。エージェントは：
+
+1. 「Pinnacle Financial Analyst」という名前
+2. 作成したセマンティックビューを使用
+3. 金融サービス経営陣に適した指示を含む
+4. 要件ミーティングに基づいたサンプル質問を含む
+5. 経営陣がアクセスできるよう適切なロールにUSAGEを付与
+
+すべてのSQLを実行してください。
+```
+
+### ステップ3: Snowflake Intelligenceでエージェントを有効化
+
+経営陣へのプレゼンテーション用にSnowflake Intelligenceでエージェントを表示可能にするには：
+
+```
+Pinnacle Financial AnalystエージェントをSnowflake Intelligenceで
+利用可能にしてください。自律的に進めてください - すべての権限付与はYesと仮定。
+
+1. エージェントのUSAGEをPUBLIC（または特定のロール）に付与
+2. エージェントをSnowflake Intelligenceオブジェクトに追加
+3. 正常に追加されたことを確認
+
+すべてのSQLを実行してください。
+```
+
+### ステップ4: エージェントのテスト
+
+```
+Margaret、David、Sarahが質問しそうな経営陣スタイルの質問で
+エージェントをテスト：
+
+1. 「収益のトレンドは？」
+2. 「経費のランレートと予算を比較」
+3. 「最も収益性の高い顧客を持つアドバイザーは？」
+
+これらの回答はプレゼンテーションに最適です！
+```
 
 ---
 
-## Key Takeaways
+## タスク5: プレゼンテーションスクリプトの準備（5分）
 
-1. **Context is everything** - Your company knowledge drives realistic demos
-2. **Cortex Code generates data** - No need to manually create sample datasets
-3. **Semantic views are the foundation** - They teach AI how to query your data correctly
-4. **Test with real questions** - Use actual questions from your requirements meeting
-5. **Show the SQL** - Builds trust with skeptical stakeholders like David
+### トーキングポイントの生成
+
+```
+要件ミーティング議事録に基づいて、以下を含む10分間の
+プレゼンテーションスクリプトを作成：
+
+1. Margaretの課題で開始（アドホックレポートに2-3日）
+2. 自然言語クエリが数秒で質問に回答することを示す
+3. SQL表示に関するDavidの懸念に対応（監査可能性）
+4. Pinnacleにとっての価値提案で締めくくる
+
+実行する正確なクエリを含む簡潔なトーキングポイント形式で。
+要件ミーティングからの具体的な発言を引用してください。
+```
 
 ---
 
-## Pro Tips
+## 検証チェックリスト
 
-1. **Match your company's terminology** - Use the same words for segments, products, categories
-2. **Include realistic imperfections** - Some budget variances, missing data points
-3. **Semantic views are SQL objects** - No stage files to manage, easier to version control
-4. **Test edge cases** - What happens with empty results or date boundaries?
+演習2に進む前に確認：
+
+- [ ] PINNACLE_FINANCIAL_DEMOデータベースがディメンションテーブルとファクトテーブルで作成済み
+- [ ] サンプルデータがロード済み（ファクトテーブルに300行以上）
+- [ ] データが現実的に見える（適切な名前、金額、日付範囲）
+- [ ] セマンティックビューがデータベースに作成済み
+- [ ] Cortex Analystが自然言語クエリに正しく応答
+- [ ] 生成されたSQLが正確で監査可能
+- [ ] Cortex Agentが作成され応答中
+- [ ] エージェントがSnowflake Intelligenceで有効化済み（USAGE付与済み）
+- [ ] プレゼンテーションスクリプトが要件ミーティングのステークホルダー懸念に対応
 
 ---
 
-## Next Steps
+## 主な学び
 
-Proceed to [Exercise 2: Master Cortex Code Skills](exercise-2-skills.md) where you'll learn to leverage built-in skills and create custom ones for your team.
+1. **コンテキストがすべて** - 会社の知識が現実的なデモを作る
+2. **Cortex Codeがデータを生成** - サンプルデータセットを手動で作成する必要なし
+3. **セマンティックビューが基盤** - AIにデータの正しいクエリ方法を教える
+4. **実際の質問でテスト** - 要件ミーティングからの実際の質問を使用
+5. **SQLを見せる** - Davidのような懐疑的なステークホルダーとの信頼を構築
+
+---
+
+## プロのコツ
+
+1. **会社の用語に合わせる** - セグメント、商品、カテゴリに同じ言葉を使用
+2. **現実的な不完全さを含める** - 一部の予算差異、欠損データポイント
+3. **セマンティックビューはSQLオブジェクト** - ステージファイルの管理不要、バージョン管理が容易
+4. **エッジケースをテスト** - 空の結果や日付境界で何が起こるか？
+
+---
+
+## 次のステップ
+
+[演習2: Cortex Codeスキルのマスター](exercise-2-skills.md)に進み、組み込みスキルの活用方法とチーム用カスタムスキルの作成方法を学びます。

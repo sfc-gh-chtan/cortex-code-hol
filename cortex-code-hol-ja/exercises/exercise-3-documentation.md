@@ -1,318 +1,319 @@
-# Exercise 3: Stakeholder Documentation
+# 演習3: ステークホルダー向けドキュメント
 
-## Objective
+## 目標
 
-Generate professional technical documentation to present to leadership, including architecture diagrams, integration guides, and security documentation that will address their concerns.
+アーキテクチャ図、統合ガイド、セキュリティドキュメントなど、経営陣に提示するプロフェッショナルな技術ドキュメントを生成し、彼らの懸念に対応します。
 
-**Time:** 45 minutes  
-**Deliverables:**
-- Architecture diagram (Mermaid)
-- Data integration guide
-- Security & compliance documentation
-
----
-
-## Background
-
-Your POC is ready, but before the leadership presentation, David Park (VP of Operations) requested technical documentation showing:
-1. How Snowflake would integrate with your existing systems (Geneva, NetSuite, Salesforce)
-2. Data flow architecture for real-time financial reporting
-3. Security model for SOC 2 compliance
-
-He specifically said:
-> "Show me the SQL. I need to trust but verify."
-
-This documentation will help you get buy-in from the technical stakeholders.
+**所要時間:** 45分  
+**成果物:**
+- アーキテクチャ図（Mermaid）
+- データ統合ガイド
+- セキュリティ＆コンプライアンスドキュメント
 
 ---
 
-## Task 1: Generate Architecture Diagram (15 min)
+## 背景
 
-### Step 1: Understand current state
+POCは準備完了ですが、経営陣へのプレゼンテーション前に、David Park（オペレーション担当VP）が以下を示す技術ドキュメントを要求しました：
+1. Snowflakeが既存システム（Geneva、NetSuite、Salesforce）とどのように統合するか
+2. リアルタイム財務レポーティングのデータフローアーキテクチャ
+3. SOC 2コンプライアンスのセキュリティモデル
+
+彼は具体的にこう言いました：
+> 「SQLを見せてほしい。信頼するが検証も必要。」
+
+このドキュメントは、技術系ステークホルダーからの賛同を得るのに役立ちます。
+
+---
+
+## タスク1: アーキテクチャ図の生成（15分）
+
+### ステップ1: 現状の理解
 
 ```
-Based on the company background in assets/customer-brief.md, summarize our 
-current technical environment in a table:
-- System name
-- Purpose
-- Data it contains
-- Current integration method
+assets/customer-brief.mdの会社概要に基づいて、現在の技術環境を
+テーブルでまとめてください：
+- システム名
+- 目的
+- 含まれるデータ
+- 現在の統合方法
 ```
 
-### Step 2: Create proposed architecture diagram
+### ステップ2: 提案アーキテクチャ図の作成
 
 ```
-Create a Mermaid architecture diagram showing how Snowflake would integrate 
-with our systems at Pinnacle Financial. Proceed autonomously.
+Pinnacle FinancialのシステムとSnowflakeがどのように統合するかを示す
+Mermaidアーキテクチャ図を作成してください。自律的に進めてください。
 
-Include:
+以下を含める：
 
-1. **Data Sources**
-   - Geneva (portfolio accounting)
-   - NetSuite (general ledger)
-   - Salesforce (client data)
+1. **データソース**
+   - Geneva（ポートフォリオ会計）
+   - NetSuite（総勘定元帳）
+   - Salesforce（顧客データ）
 
-2. **Ingestion Layer**
-   - How each source would connect to Snowflake
-   - Data freshness expectations
+2. **取り込みレイヤー**
+   - 各ソースがSnowflakeに接続する方法
+   - データ鮮度の期待値
 
-3. **Snowflake Platform**
-   - RAW / CURATED / ANALYTICS schemas
-   - Cortex Analyst with semantic model
+3. **Snowflakeプラットフォーム**
+   - RAW / CURATED / ANALYTICSスキーマ
+   - セマンティックモデル付きCortex Analyst
    - Snowflake Intelligence
 
-4. **Consumption Layer**
-   - Power BI (existing)
-   - Snowflake Intelligence (new)
-   - API access (future)
+4. **消費レイヤー**
+   - Power BI（既存）
+   - Snowflake Intelligence（新規）
+   - APIアクセス（将来）
 
-Add data latency annotations on each flow.
-Use color coding: gray = existing, green = new.
+各フローにデータレイテンシの注釈を追加。
+色分け：グレー = 既存、緑 = 新規。
 ```
 
-### Step 3: Create security architecture diagram
+### ステップ3: セキュリティアーキテクチャ図の作成
 
 ```
-Create a second Mermaid diagram focused on security architecture. Proceed autonomously.
+セキュリティアーキテクチャに焦点を当てた2つ目のMermaid図を作成してください。
+自律的に進めてください。
 
-1. Authentication flow (SSO integration)
-2. Role hierarchy (who can see what)
-3. Data masking for PII
-4. Audit logging
+1. 認証フロー（SSO統合）
+2. ロール階層（誰が何を見られるか）
+3. PII用データマスキング
+4. 監査ログ
 
-Include the SOC 2 compliance touchpoints David mentioned.
+Davidが言及したSOC 2コンプライアンスのタッチポイントを含める。
 ```
 
-### Step 4: Generate text-based version
+### ステップ4: テキスト版の生成
 
-For email/Slack sharing with stakeholders:
+ステークホルダーとのメール/Slack共有用：
 
 ```
-Convert the architecture diagram to:
-1. ASCII art version for plain text
-2. Bullet-point narrative I can present verbally
-3. One-paragraph executive summary
+アーキテクチャ図を以下に変換：
+1. プレーンテキスト用ASCIIアート版
+2. 口頭で説明できる箇条書き形式
+3. 1段落のエグゼクティブサマリー
 ```
 
 ---
 
-## Task 2: Create Data Integration Guide (15 min)
+## タスク2: データ統合ガイドの作成（15分）
 
-### Step 1: Generate integration documentation
-
-```
-Create a technical integration guide for connecting our source systems to 
-Snowflake if we move to production. Proceed autonomously. Include:
-
-## Document Structure:
-1. Executive Summary (1 paragraph for Margaret)
-2. Technical Overview (for David)
-3. Prerequisites & Requirements
-4. Integration Details by Source System:
-   - Geneva → Snowflake (portfolio data)
-   - NetSuite → Snowflake (GL data)
-   - Salesforce → Snowflake (client data)
-5. Data Transformation Logic
-6. Refresh Schedules
-7. Error Handling & Monitoring
-8. Timeline & Milestones
-
-For each source system include:
-- Connection method (Fivetran, Snowpipe, etc.)
-- Tables to sync
-- Incremental vs. full refresh
-- Expected latency
-```
-
-### Step 2: Create data mapping document
+### ステップ1: 統合ドキュメントの生成
 
 ```
-Generate a data mapping document showing. Proceed autonomously.
+本番環境に移行した場合にソースシステムをSnowflakeに接続するための
+技術統合ガイドを作成してください。自律的に進めてください。以下を含める：
 
-| Source System | Source Table | Snowflake Table | Key Columns | Transform |
+## ドキュメント構成：
+1. エグゼクティブサマリー（Margaret向け1段落）
+2. 技術概要（David向け）
+3. 前提条件と要件
+4. ソースシステム別の統合詳細：
+   - Geneva → Snowflake（ポートフォリオデータ）
+   - NetSuite → Snowflake（GLデータ）
+   - Salesforce → Snowflake（顧客データ）
+5. データ変換ロジック
+6. 更新スケジュール
+7. エラー処理とモニタリング
+8. タイムラインとマイルストーン
+
+各ソースシステムについて以下を含める：
+- 接続方法（Fivetran、Snowpipeなど）
+- 同期するテーブル
+- 増分更新 vs. フルリフレッシュ
+- 予想レイテンシ
+```
+
+### ステップ2: データマッピングドキュメントの作成
+
+```
+以下を示すデータマッピングドキュメントを生成してください。自律的に進めてください。
+
+| ソースシステム | ソーステーブル | Snowflakeテーブル | キーカラム | 変換 |
 |--------------|--------------|-----------------|-------------|-----------|
 
-Cover the key tables for:
-1. Client master data (Salesforce → dim_client)
-2. Revenue data (Geneva → fact_revenue)
-3. Expense data (NetSuite → fact_expense)
+以下の主要テーブルをカバー：
+1. 顧客マスターデータ（Salesforce → dim_client）
+2. 収益データ（Geneva → fact_revenue）
+3. 経費データ（NetSuite → fact_expense）
 ```
 
-### Step 3: Generate validation queries
+### ステップ3: 検証クエリの生成
 
 ```
-Create a set of data validation queries that David's team can run to verify 
-the integration is working correctly (in production). Proceed autonomously.
+Davidのチームが統合が正常に動作していることを確認するために実行できる
+データ検証クエリのセットを作成してください（本番環境用）。自律的に進めてください。
 
-1. Row count comparison (source vs. Snowflake)
-2. Sum validation (revenue totals match)
-3. Date range check (no missing days)
-4. Referential integrity (all FKs resolve)
-5. Data freshness (last update timestamp)
+1. 行数比較（ソース vs. Snowflake）
+2. 合計値検証（収益合計が一致）
+3. 日付範囲チェック（欠落日なし）
+4. 参照整合性（すべてのFKが解決）
+5. データ鮮度（最終更新タイムスタンプ）
 
-Format as executable SQL with comments explaining each check.
+各チェックを説明するコメント付きの実行可能なSQL形式で。
 ```
 
 ---
 
-## Task 3: Create Security & Compliance Documentation (15 min)
+## タスク3: セキュリティ＆コンプライアンスドキュメントの作成（15分）
 
-### Step 1: Generate security documentation
-
-```
-Create a Security Architecture Document for Pinnacle Financial addressing 
-David's concerns about data accuracy and Sarah's compliance requirements.
-Proceed autonomously.
-
-1. **Authentication & Authorization**
-   - SSO integration options
-   - Role-based access control model
-   - Row-level security for client data
-
-2. **Data Protection**
-   - Encryption (at-rest, in-transit)
-   - Dynamic data masking for PII
-   - Column-level security for sensitive fields
-
-3. **Audit & Compliance**
-   - Query history retention
-   - Access logging
-   - SOC 2 Type II mapping
-   - Regulatory reporting controls
-
-4. **AI Governance**
-   - Cortex Analyst guardrails
-   - SQL approval workflows
-   - Explainability requirements
-
-Include specific Snowflake features that address each requirement.
-```
-
-### Step 2: Create role hierarchy diagram
+### ステップ1: セキュリティドキュメントの生成
 
 ```
-Create a Mermaid diagram showing the proposed Snowflake role hierarchy.
-Proceed autonomously.
+Davidのデータ精度への懸念とSarahのコンプライアンス要件に対応する
+Pinnacle Financial向けセキュリティアーキテクチャドキュメントを作成してください。
+自律的に進めてください。
+
+1. **認証と認可**
+   - SSO統合オプション
+   - ロールベースアクセス制御モデル
+   - 顧客データの行レベルセキュリティ
+
+2. **データ保護**
+   - 暗号化（保存時、転送時）
+   - PII用動的データマスキング
+   - 機密フィールドの列レベルセキュリティ
+
+3. **監査とコンプライアンス**
+   - クエリ履歴保持
+   - アクセスログ
+   - SOC 2 Type IIマッピング
+   - 規制報告コントロール
+
+4. **AIガバナンス**
+   - Cortex Analystガードレール
+   - SQL承認ワークフロー
+   - 説明可能性要件
+
+各要件に対応する具体的なSnowflake機能を含める。
+```
+
+### ステップ2: ロール階層図の作成
+
+```
+提案するSnowflakeロール階層を示すMermaid図を作成してください。
+自律的に進めてください。
 
 ACCOUNTADMIN
 └── SYSADMIN
     └── PINNACLE_ADMIN
-        ├── PINNACLE_ANALYST (Finance team - full read)
-        │   └── PINNACLE_VIEWER (Executives - dashboards only)
-        ├── PINNACLE_COMPLIANCE (Sarah's team - audit access)
-        └── PINNACLE_DATA_ENG (David's team - write access)
+        ├── PINNACLE_ANALYST（財務チーム - フル読み取り）
+        │   └── PINNACLE_VIEWER（経営陣 - ダッシュボードのみ）
+        ├── PINNACLE_COMPLIANCE（Sarahのチーム - 監査アクセス）
+        └── PINNACLE_DATA_ENG（Davidのチーム - 書き込みアクセス）
 
-Show what each role can access (schemas, tables, sensitive columns).
+各ロールがアクセスできるもの（スキーマ、テーブル、機密カラム）を示す。
 ```
 
-### Step 3: Generate compliance checklist
+### ステップ3: コンプライアンスチェックリストの生成
 
 ```
-Create a SOC 2 compliance checklist mapping Snowflake capabilities to 
-Trust Service Criteria. Proceed autonomously.
+Snowflake機能をTrust Service Criteriaにマッピングする
+SOC 2コンプライアンスチェックリストを作成してください。自律的に進めてください。
 
-| SOC 2 Criteria | Requirement | Snowflake Feature | Status |
+| SOC 2基準 | 要件 | Snowflake機能 | ステータス |
 |----------------|-------------|-------------------|--------|
 
-Cover:
-- CC6.1 (Logical access controls)
-- CC6.2 (Authentication)
-- CC6.3 (Authorization)
-- CC7.1 (System monitoring)
-- CC7.2 (Anomaly detection)
+以下をカバー：
+- CC6.1（論理アクセス制御）
+- CC6.2（認証）
+- CC6.3（認可）
+- CC7.1（システムモニタリング）
+- CC7.2（異常検知）
 ```
 
 ---
 
-## Task 4: Package Documentation (Bonus)
+## タスク4: ドキュメントのパッケージ化（ボーナス）
 
-### Step 1: Create table of contents
-
-```
-Create a master documentation index that organizes all technical documents:
-
-1. Architecture Overview
-   - System architecture diagram
-   - Security architecture diagram
-2. Integration Guide
-   - Source system connections
-   - Data mapping
-   - Validation queries
-3. Security & Compliance
-   - Access control model
-   - SOC 2 compliance matrix
-4. Operations
-   - Runbooks (placeholder)
-   - Monitoring (placeholder)
-
-Format as a clickable table of contents.
-```
-
-### Step 2: Generate executive summary
+### ステップ1: 目次の作成
 
 ```
-Write a 1-page Technical Summary for Margaret Chen (CFO) that:
+すべての技術ドキュメントを整理するマスタードキュメントインデックスを作成：
 
-1. Explains the architecture in business terms
-2. Highlights risk mitigation (addressing David's concerns)
-3. Shows timeline to value
-4. Includes a clear next-steps section
+1. アーキテクチャ概要
+   - システムアーキテクチャ図
+   - セキュリティアーキテクチャ図
+2. 統合ガイド
+   - ソースシステム接続
+   - データマッピング
+   - 検証クエリ
+3. セキュリティ＆コンプライアンス
+   - アクセス制御モデル
+   - SOC 2コンプライアンスマトリックス
+4. 運用
+   - ランブック（プレースホルダー）
+   - モニタリング（プレースホルダー）
 
-Avoid technical jargon - focus on outcomes.
+クリック可能な目次形式で。
+```
+
+### ステップ2: エグゼクティブサマリーの生成
+
+```
+Margaret Chen（CFO）向けに1ページの技術サマリーを作成：
+
+1. アーキテクチャをビジネス用語で説明
+2. リスク軽減を強調（Davidの懸念への対応）
+3. 価値実現までのタイムラインを示す
+4. 明確な次のステップセクションを含む
+
+技術用語を避け、成果に焦点を当てる。
 ```
 
 ---
 
-## Validation Checklist
+## 検証チェックリスト
 
-Before completing the lab, verify:
+ラボ完了前に確認：
 
-- [ ] Architecture diagram renders correctly in Mermaid viewer
-- [ ] Diagram shows all data flows with latency annotations
-- [ ] Security diagram addresses SSO, RBAC, masking
-- [ ] Integration guide covers all three source systems
-- [ ] Data mapping document is complete
-- [ ] Validation queries are executable SQL
-- [ ] Security documentation maps to SOC 2 criteria
-- [ ] Executive summary is jargon-free
-
----
-
-## Key Takeaways
-
-1. **Diagrams communicate faster** - Mermaid makes this easy
-2. **Layer your documentation** - Executive summary + technical detail
-3. **Address specific concerns** - Reference what stakeholders said
-4. **Make it actionable** - Include executable queries and checklists
-5. **Version control everything** - These documents will evolve
+- [ ] アーキテクチャ図がMermaidビューアで正しくレンダリング
+- [ ] 図にレイテンシ注釈付きのすべてのデータフローが表示
+- [ ] セキュリティ図がSSO、RBAC、マスキングに対応
+- [ ] 統合ガイドが3つのソースシステムすべてをカバー
+- [ ] データマッピングドキュメントが完成
+- [ ] 検証クエリが実行可能なSQL
+- [ ] セキュリティドキュメントがSOC 2基準にマッピング
+- [ ] エグゼクティブサマリーに専門用語がない
 
 ---
 
-## Pro Tips
+## 主な学び
 
-1. **Test Mermaid diagrams** - Use mermaid.live to validate
-2. **Use consistent naming** - Match your company's terminology
-3. **Include "why"** - Explain reasoning, not just steps
-4. **Add your expertise** - Review and enhance AI-generated content
-5. **Create templates** - Reuse structure for future POCs
+1. **図はより速くコミュニケーション** - Mermaidでこれが簡単に
+2. **ドキュメントを階層化** - エグゼクティブサマリー + 技術詳細
+3. **具体的な懸念に対応** - ステークホルダーの発言を参照
+4. **実行可能に** - 実行可能なクエリとチェックリストを含める
+5. **すべてをバージョン管理** - これらのドキュメントは進化する
 
 ---
 
-## Congratulations!
+## プロのコツ
 
-You've completed the Cortex Code Hands-on Lab.
+1. **Mermaid図をテスト** - mermaid.liveで検証
+2. **一貫した命名を使用** - 会社の用語に合わせる
+3. **「なぜ」を含める** - ステップだけでなく理由を説明
+4. **専門知識を追加** - AI生成コンテンツをレビューして強化
+5. **テンプレートを作成** - 将来のPOC用に構造を再利用
 
-**What you've accomplished:**
-- Built a working financial analytics POC with Cortex Code
-- Mastered using built-in skills and created a custom skill for your team
-- Generated professional documentation for leadership
+---
 
-**What you can present to stakeholders:**
-- A working demo in Snowflake Intelligence
-- Technical architecture and security documentation
-- A clear path from POC to production
+## おめでとうございます！
 
-**Continue exploring:**
-- Refine your POC based on leadership feedback
-- Share the financial-demo-prep skill with colleagues
-- Expand to additional use cases (compliance reporting, client profitability)
+Cortex Codeハンズオンラボを完了しました。
+
+**達成したこと:**
+- Cortex Codeで動作する財務分析POCを構築
+- 組み込みスキルの使用をマスターし、チーム用カスタムスキルを作成
+- 経営陣向けのプロフェッショナルなドキュメントを生成
+
+**ステークホルダーに提示できるもの:**
+- Snowflake Intelligenceで動作するデモ
+- 技術アーキテクチャとセキュリティドキュメント
+- POCから本番への明確なパス
+
+**引き続き探索:**
+- 経営陣のフィードバックに基づいてPOCを改善
+- financial-demo-prepスキルを同僚と共有
+- 追加のユースケースに拡張（コンプライアンスレポート、顧客収益性）

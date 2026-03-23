@@ -1,132 +1,132 @@
-# Company Background: Pinnacle Financial Services
+# 会社概要: Pinnacle Financial Services
 
-## About Your Company
+## 会社について
 
-**Pinnacle Financial Services** is a mid-sized asset management firm serving high-net-worth individuals and institutional clients. You manage $2B in assets under management (AUM) across multiple investment strategies.
+**Pinnacle Financial Services** は、富裕層個人および機関投資家向けサービスを提供する中堅資産運用会社です。複数の投資戦略にわたり、運用資産残高（AUM）20億ドルを管理しています。
 
-### Key Business Metrics
-- **Assets Under Management:** $2B
-- **Client Accounts:** 50,000
-- **Revenue (Annual):** $25M (management fees + performance fees)
-- **Employees:** 150 (25 in finance/operations)
-- **Office Locations:** New York (HQ), Boston, San Francisco
+### 主要ビジネス指標
+- **運用資産残高:** 20億ドル
+- **顧客口座数:** 50,000件
+- **年間収益:** 2,500万ドル（運用報酬 + 成功報酬）
+- **従業員数:** 150名（うち財務・オペレーション部門25名）
+- **拠点:** ニューヨーク（本社）、ボストン、サンフランシスコ
 
 ---
 
-## Current Technical Environment
+## 現在の技術環境
 
-### Data Infrastructure
-| Component | Technology | Notes |
+### データインフラ
+| コンポーネント | テクノロジー | 備考 |
 |-----------|------------|-------|
-| Core Systems | Advent Geneva | Portfolio accounting, NAV calculation |
-| CRM | Salesforce Financial Services Cloud | Client relationships, AUM tracking |
-| GL System | NetSuite | General ledger, AP/AR |
-| Data Warehouse | SQL Server | On-premises, 8 years old |
-| Reporting | Excel + Power BI | Manual reconciliation, 40+ spreadsheets |
-| Compliance | Manual processes | Quarterly regulatory reporting |
+| 基幹システム | Advent Geneva | ポートフォリオ会計、NAV計算 |
+| CRM | Salesforce Financial Services Cloud | 顧客関係管理、AUM追跡 |
+| 会計システム | NetSuite | 総勘定元帳、買掛/売掛管理 |
+| データウェアハウス | SQL Server | オンプレミス、稼働8年 |
+| レポーティング | Excel + Power BI | 手動照合、40以上のスプレッドシート |
+| コンプライアンス | 手動プロセス | 四半期ごとの規制報告 |
 
-### Pain Points You've Identified
-1. **Reporting delays:** Month-end close takes 10 business days
-2. **Data silos:** Client data in CRM doesn't match portfolio system
-3. **Manual reconciliation:** 3 FTEs spend 50% of time on data cleanup
-4. **No self-service:** Executives wait days for ad-hoc reports
-5. **Compliance risk:** Manual regulatory report preparation prone to errors
-
----
-
-## POC Requirements from Leadership
-
-### Must Have (P0)
-- [ ] Unified view of revenue by client, product, and channel
-- [ ] Real-time expense tracking with budget variance alerts
-- [ ] Automated P&L generation (daily, monthly, quarterly)
-- [ ] Natural language query interface for executives
-- [ ] SOC 2 compliant data handling
-
-### Should Have (P1)
-- [ ] Client profitability analysis
-- [ ] Predictive revenue forecasting
-- [ ] Automated regulatory report generation
-- [ ] Self-service dashboards for finance team
-
-### Nice to Have (P2)
-- [ ] AI-powered anomaly detection for transactions
-- [ ] What-if scenario modeling
-- [ ] Mobile access for executives
+### 特定された課題
+1. **レポート遅延:** 月次決算に10営業日を要する
+2. **データサイロ:** CRMの顧客データとポートフォリオシステムが不一致
+3. **手動照合:** 3名のFTEが業務時間の50%をデータクレンジングに費やす
+4. **セルフサービス不在:** 経営陣がアドホックレポートを数日待つ必要がある
+5. **コンプライアンスリスク:** 手動での規制報告書作成はエラーが発生しやすい
 
 ---
 
-## Key Stakeholders You'll Present To
+## 経営陣からのPOC要件
 
-### Executive Sponsor
+### 必須要件 (P0)
+- [ ] 顧客・商品・チャネル別の収益統合ビュー
+- [ ] 予算差異アラート付きリアルタイム経費追跡
+- [ ] 自動P&L生成（日次、月次、四半期）
+- [ ] 経営陣向け自然言語クエリインターフェース
+- [ ] SOC 2準拠のデータ取り扱い
+
+### 推奨要件 (P1)
+- [ ] 顧客収益性分析
+- [ ] 収益予測
+- [ ] 規制報告書の自動生成
+- [ ] 財務チーム向けセルフサービスダッシュボード
+
+### あれば望ましい (P2)
+- [ ] AI活用による取引異常検知
+- [ ] What-ifシナリオモデリング
+- [ ] 経営陣向けモバイルアクセス
+
+---
+
+## プレゼン対象の主要ステークホルダー
+
+### エグゼクティブスポンサー
 **Margaret Chen, CFO**
-- 20 years in financial services
-- Focused on reducing month-end close from 10 days to 3
-- Wants "Amazon-like" experience for financial data
-- *Your primary champion for this POC*
+- 金融サービス業界で20年の経験
+- 月次決算を10日から3日に短縮することに注力
+- 財務データに「Amazonのような」体験を求める
+- *このPOCの主要な推進者*
 
-### Technical Lead
-**David Park, VP of Operations**
-- Owns data infrastructure and reporting
-- Concerned about data accuracy and AI trustworthiness
-- Wants to reduce manual reconciliation
-- *Will scrutinize technical details and want to see the SQL*
+### 技術リード
+**David Park, オペレーション担当VP**
+- データインフラとレポーティングを統括
+- データ精度とAIの信頼性を懸念
+- 手動照合の削減を希望
+- *技術的な詳細を精査し、SQLを確認したい*
 
-### Compliance Stakeholder
-**Sarah Martinez, Head of Compliance**
-- Responsible for SEC/regulatory reporting
-- Needs audit trail for all financial data
-- Wants automated compliance dashboards
-- *Cares about governance and auditability*
+### コンプライアンス担当
+**Sarah Martinez, コンプライアンス責任者**
+- SEC/規制報告を担当
+- すべての財務データに監査証跡が必要
+- コンプライアンスダッシュボードの自動化を希望
+- *ガバナンスと監査可能性を重視*
 
-### Your Team
-**4 analysts** in finance operations
-- Excel power users, basic SQL knowledge
-- Want self-service without IT dependency
-- Skeptical of "AI" accuracy for financial data
+### あなたのチーム
+財務オペレーションの**アナリスト4名**
+- Excelパワーユーザー、基本的なSQL知識あり
+- IT部門に依存しないセルフサービスを希望
+- 財務データに対する「AI」の精度に懐疑的
 
 ---
 
-## POC Timeline
+## POCタイムライン
 
-| Milestone | Target | Notes |
+| マイルストーン | 目標時期 | 備考 |
 |-----------|--------|-------|
-| Build POC | This week | What you're doing in this lab |
-| Present to Leadership | Next week | Show the art of the possible |
-| Gather Feedback | Week 3 | Iterate based on stakeholder input |
-| Decision | Week 4 | Go/no-go on expanding to production |
+| POC構築 | 今週 | このラボで実施する内容 |
+| 経営陣へのプレゼン | 来週 | 可能性を示す |
+| フィードバック収集 | 第3週 | ステークホルダーの意見を反映して改善 |
+| 意思決定 | 第4週 | 本番環境への拡大可否を判断 |
 
 ---
 
-## Why Snowflake + Cortex Code?
+## なぜ Snowflake + Cortex Code なのか？
 
-You've been evaluating options and see potential in:
-- **Cortex Analyst** - Natural language queries for executives
-- **Snowflake Intelligence** - Chat interface for data exploration
-- **Semantic Views** - Business-friendly layer over complex data
-- **Governance built-in** - SOC 2 compliance, audit trails
+様々な選択肢を評価した結果、以下に可能性を見出しています：
+- **Cortex Analyst** - 経営陣向け自然言語クエリ
+- **Snowflake Intelligence** - データ探索用チャットインターフェース
+- **セマンティックビュー** - 複雑なデータ上のビジネスフレンドリーなレイヤー
+- **組み込みガバナンス** - SOC 2準拠、監査証跡
 
-Your job is to prove this can work for Pinnacle.
+あなたの仕事は、これがPinnacleで機能することを証明することです。
 
 ---
 
-## Sample Data Domains for POC
+## POC用サンプルデータドメイン
 
-### Revenue Data
-- Management fees (basis points on AUM)
-- Performance fees (carried interest)
-- Advisory fees
-- Transaction fees
+### 収益データ
+- 運用報酬（AUMに対するベーシスポイント）
+- 成功報酬（キャリードインタレスト）
+- アドバイザリーフィー
+- 取引手数料
 
-### Expense Data
-- Compensation & benefits
-- Technology & data vendors
-- Professional services
-- Occupancy costs
-- Marketing & business development
+### 経費データ
+- 人件費・福利厚生
+- テクノロジー・データベンダー
+- 専門サービス
+- オフィス費用
+- マーケティング・事業開発
 
-### Financial Reporting
-- Income Statement (P&L)
-- Balance Sheet
-- Cash Flow Statement
-- Regulatory filings (ADV, 13F)
+### 財務レポート
+- 損益計算書（P&L）
+- 貸借対照表
+- キャッシュフロー計算書
+- 規制報告書（ADV、13F）
